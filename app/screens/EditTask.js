@@ -17,7 +17,6 @@ const EditTaskScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    console.log("task details",task)
     setTitle(task.title);
     setDescription(task.description);
   },[task])

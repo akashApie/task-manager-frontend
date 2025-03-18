@@ -5,7 +5,6 @@ export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async ({ userId, oldPassword, newPassword }, { rejectWithValue }) => {
     try {
-      console.log("hello",{ userId, oldPassword, newPassword })
       const axiosInstance = await createAxiosInstance();
       const response = await axiosInstance.post("/auth/change-password", { 
         userId, 
@@ -13,7 +12,6 @@ export const changePassword = createAsyncThunk(
         newPassword 
       });
 
-      console.log("response.data",response)
       return response.data.message;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Error changing password");

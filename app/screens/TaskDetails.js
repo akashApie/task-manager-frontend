@@ -28,13 +28,14 @@ const TaskDetailsScreen = () => {
   const { passwordChangeSuccess, error: passwordError } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    console.log("user?.user?.id")
     if (user?.user?.id) {
-        console.log("user?.user?.id",user?.user?.id)
       dispatch(fetchTasks({ id: user.user.id }));
     }
   }, [dispatch, user]);
 
+  useEffect(()=>{
+console.log("tasks",tasks)
+  },[tasks])
   useEffect(() => {
     if (passwordChangeSuccess) {
       Alert.alert("Success", "Password updated successfully");
@@ -69,7 +70,6 @@ const TaskDetailsScreen = () => {
       Alert.alert("Error", "Both fields are required");
       return;
     }
-    console.log({ userId: user.user.id, oldPassword, newPassword })
       dispatch(changePassword({ userId: user.user.id, oldPassword, newPassword }))
     .unwrap()
     .then((res) => {

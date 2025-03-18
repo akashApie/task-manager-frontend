@@ -5,10 +5,8 @@ export const fetchTasks = createAsyncThunk(
   "tasks/fetchTasks",
   async ({id}, { rejectWithValue }) => {
     try {
-      console.log("jjeerrkk")
       const axiosInstance = await createAxiosInstance();
       const response = await axiosInstance.post("/tasks/getAll",{userId:id});
-      console.log("response data", response)
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
